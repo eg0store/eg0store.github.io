@@ -1,7 +1,6 @@
 :root{
   --bg:#070a0f;
   --bg2:#0b0f14;
-  --card:#101720;
   --text:#e9eef6;
   --muted:#a7b1c0;
   --line:rgba(255,255,255,.08);
@@ -100,13 +99,6 @@ h3{margin:0 0 6px;font-size:18px}
 
 /* PRODUCTS */
 .product{position:relative}
-.product.best{border-color:rgba(110,231,255,.25); box-shadow:0 18px 70px rgba(110,231,255,.07)}
-.badge{
-  position:absolute; top:12px; right:12px;
-  font-size:12px; padding:6px 10px; border-radius:999px;
-  border:1px solid var(--line);
-  background:rgba(110,231,255,.12);
-}
 .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .price{
   font-weight:900;
