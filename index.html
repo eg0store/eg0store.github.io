@@ -5,127 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EG Store</title>
 
-  <!-- ADD ONLY: favicon (logo in browser tab) -->
+  <!-- favicon -->
   <link rel="icon" type="image/png" href="./logo.png">
 
-  <!-- EXISTING CSS -->
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
 <header class="header">
   <div class="container header-inner">
-    <a class="brand" href="./">
-      <img src="./logo.png" alt="EG Store Logo" class="brand-logo">
-      <div class="brand-text">
+    <div class="brand">
+      <img src="./logo.png" class="brand-logo" alt="EG Store">
+      <div>
         <div class="brand-name">EG Store</div>
         <div class="brand-sub">Digital design services • Direct order</div>
       </div>
-    </a>
-
-    <nav class="nav">
-      <a href="#packages">Packages</a>
-      <a href="#contact">Contact</a>
-      <a href="./privacy.html">Privacy</a>
-    </nav>
+    </div>
   </div>
 </header>
 
 <main>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <h1>Premium design that sells.</h1>
-      <p class="lead">
-        Choose a package below. Click <b>Buy Now</b> to view bank transfer details.
-      </p>
-
-      <div class="cta">
-        <a class="btn" href="#packages">View Packages</a>
-        <a class="btn ghost" href="#contact">Request Custom</a>
-      </div>
-
-      <div class="chips">
-        <span class="chip">Fast delivery</span>
-        <span class="chip">High-quality files</span>
-        <span class="chip">Revisions included</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>How it works</h3>
-      <ol class="steps">
-        <li>Select a package.</li>
-        <li>Click Buy Now to view bank details.</li>
-        <li>Transfer and send confirmation.</li>
-        <li>Receive files + revisions.</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section id="packages" class="section alt">
+<section class="section">
   <div class="container">
     <h2>Packages</h2>
-    <p class="muted">Direct order via bank transfer.</p>
 
     <div class="grid-3">
 
-      <article class="product card">
+      <div class="product card">
         <div class="top">
           <h3>Logo Starter</h3>
           <div class="price">50 USD</div>
         </div>
-        <p class="muted">Clean modern logo for startups.</p>
         <ul class="list">
           <li>2 concepts</li>
           <li>2 revisions</li>
-          <li>PNG + JPG + transparent</li>
+          <li>PNG + JPG</li>
           <li>Delivery: 2–3 days</li>
         </ul>
-        <a class="btn full" href="#" data-name="Logo Starter" data-price="50 USD">Buy Now</a>
-      </article>
+        <button class="btn full" onclick="openBank('Logo Starter','50 USD')">
+          Buy Now
+        </button>
+      </div>
 
-      <article class="product card">
+      <div class="product card">
         <div class="top">
           <h3>Social Pack (10 Posts)</h3>
           <div class="price">100 USD</div>
         </div>
-        <p class="muted">Premium posts with your branding.</p>
         <ul class="list">
           <li>10 posts</li>
-          <li>1 story template</li>
           <li>2 revisions</li>
+          <li>Story template</li>
           <li>Delivery: 2–4 days</li>
         </ul>
-        <a class="btn full" href="#" data-name="Social Pack (10 Posts)" data-price="100 USD">Buy Now</a>
-      </article>
+        <button class="btn full" onclick="openBank('Social Pack','100 USD')">
+          Buy Now
+        </button>
+      </div>
 
-      <article class="product card">
+      <div class="product card">
         <div class="top">
           <h3>Discord Server Design</h3>
           <div class="price">80 USD</div>
         </div>
-        <p class="muted">Full Discord branding pack.</p>
         <ul class="list">
           <li>Banner + icon</li>
           <li>3–6 panels</li>
-          <li>Basic role icons</li>
+          <li>Role icons</li>
           <li>Delivery: 2–5 days</li>
         </ul>
-        <a class="btn full" href="#" data-name="Discord Server Design" data-price="80 USD">Buy Now</a>
-      </article>
+        <button class="btn full" onclick="openBank('Discord Server Design','80 USD')">
+          Buy Now
+        </button>
+      </div>
 
     </div>
   </div>
 </section>
 
-<section id="contact" class="section">
+<section class="section">
   <div class="container">
     <h2>Contact</h2>
-    <p>Email: <b>7moty4050@gmail.com</b></p>
-    <p>WhatsApp: <b>+21208519473</b></p>
+    <p>WhatsApp: <b>01208519473</b></p>
   </div>
 </section>
 
@@ -134,9 +96,49 @@
 <footer class="footer">
   <div class="container footer-inner">
     <div>© EG Store</div>
-    <div>Bank transfer • Direct order</div>
   </div>
 </footer>
+
+<!-- ===== Bank Modal ===== -->
+<div id="overlay" class="overlay" onclick="closeBank()"></div>
+
+<div id="bankModal" class="modal">
+  <div class="modal-top">
+    <h3>Bank Transfer</h3>
+    <button class="icon-btn" onclick="closeBank()">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <p><b>Service:</b> <span id="serviceName"></span></p>
+    <p><b>Amount:</b> <span id="servicePrice"></span></p>
+
+    <hr>
+
+    <p><b>IBAN</b></p>
+    <p class="mono">EG210037002708181020671629935</p>
+
+    <p><b>Account Number</b></p>
+    <p class="mono">1020671629935</p>
+
+    <p class="small muted">
+      After payment, send screenshot via WhatsApp.
+    </p>
+  </div>
+</div>
+
+<script>
+function openBank(name, price) {
+  document.getElementById("serviceName").innerText = name;
+  document.getElementById("servicePrice").innerText = price;
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("bankModal").style.display = "block";
+}
+
+function closeBank() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("bankModal").style.display = "none";
+}
+</script>
 
 </body>
 </html>
