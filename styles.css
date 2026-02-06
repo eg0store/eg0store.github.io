@@ -223,3 +223,9 @@ h3{margin:0 0 6px;font-size:18px}
   h1{font-size:34px}
   .grid-3{grid-template-columns:1fr}
 }
+/* FIX: make modal/overlay appear when JS adds .show */
+.overlay{ display:none; }
+.overlay.show{ display:block; }
+
+.modal{ display:none; }
+.modal.show{ display:block; }
