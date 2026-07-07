@@ -27,13 +27,13 @@ body::before{
   content:"";
   position: fixed;
   inset: 0;
-  background: rgba(7,10,15,.55);
+  background: rgba(5,7,10,.78);
   pointer-events: none;
   z-index: 0;
 }
-}
+
 a{color:inherit;text-decoration:none}
-.container{max-width:1050px;margin:0 auto;padding:0 18px}
+.container{max-width:1050px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
 
 /* HEADER */
 .header{
